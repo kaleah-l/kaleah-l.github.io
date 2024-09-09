@@ -1,0 +1,52 @@
+<!--
+Author: Kaleah Leisher
+Date: 9/3/24
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab02</title>
+    <script>
+        //javascript to allow functions
+        var hours12 = true;
+
+        function getInfo(){
+            const months = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"];
+            var date=new Date;
+            year=date.getFullYear();
+            month=months[date.getMonth()];
+            day=date.getDate();
+            minutes=date.getMinutes();
+            hours12 = ( document.getElementById("Hours").selectedIndex==0 ? true : false ); 
+            hour = date.getHours(); 
+            hour = (hours12 ? hour%12 : hour);
+            return [month,day,year,hour,minutes] 
+        }
+        function dateAlert() {
+            let dayValues = getInfo();
+            alert("The date today is: "+dayValues[0]+" "+dayValues[1]+", "+dayValues[2]);
+            alert("and the current time is: "+dayValues[3]+":"+dayValues[4]);
+        }
+        function datePage() {
+            let dayValues = getInfo(); 
+            document.querySelector("#printDate").innerHTML=
+            "The date today is: "+dayValues[0]+" "+dayValues[1]+", "+dayValues[2]+"<br>"+"and the current time is: "+dayValues[3]+":"+dayValues[4];
+        }
+    </script>
+</head>
+<body>
+    <button id="dateInAlert" onclick="dateAlert()">Date-Time in Alert Pop-up</button>
+    <button id="dateOnPage" onclick="datePage()">Date-Time on Page</button>
+    <select id="Hours" size="1"> 
+        <option value="0">12 Hours</option> 
+        <option value="1">24 Hours</option> 
+    </select> 
+
+    <div id="printDate">
+        The count goes here.
+    </div>
+</body>
+</html>
