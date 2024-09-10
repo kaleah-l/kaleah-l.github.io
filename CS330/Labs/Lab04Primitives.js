@@ -61,4 +61,7 @@ function render() {
     //gl.drawArrays( gl.TRIANGLES, 0, points.length );
     //gl.drawArrays( gl.TRIANGLE_STRIP, 0, points.length );
     //gl.drawArrays( gl.TRIANGLE_FAN, 0, points.length );
+
+    //The triangle fan and strip do not fill the shape within the lines connecting the shapes vertices
+    //I believe this problem is due to the fact that the shape is a nonsimple concave shape
 }
