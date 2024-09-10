@@ -1,3 +1,6 @@
+//Author: Kaleah Leisher
+//Date: 9/10/24
+
 "use strict";
 var gl;
 var points;
