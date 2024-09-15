@@ -59,7 +59,7 @@ function render() {
 
     //gl.drawArrays( gl.POINTS, 0, points.length );
     //gl.drawArrays( gl.LINES, 0, points.length );
-    gl.drawArrays( gl.POINTS, 0, sliderVal );
+    gl.drawArrays( gl.POINTS, 0, points.length );
     gl.drawArrays( gl.LINES, 0, sliderVal );
     //gl.drawArrays( gl.LINE_STRIP, 0, points.length );
     //gl.drawArrays( gl.LINE_LOOP, 0, points.length );
