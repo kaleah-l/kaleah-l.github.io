@@ -166,7 +166,6 @@ function init()
     // Load the data into the GPU
 
     var bufferId = gl.createBuffer();
-    gl.bindBuffer( gl.ARRAY_BUFFER, bufferId );
 
     // Associate out shader variables with our data buffer
 
@@ -200,6 +199,7 @@ function render() {
         selectedPoints=points;
     }
 
+    gl.bindBuffer( gl.ARRAY_BUFFER, bufferId );
     gl.bufferData( gl.ARRAY_BUFFER, flatten(selectedPoints), gl.STATIC_DRAW );
     gl.drawArrays( gl.POINTS, 0, selectedPoints.length );
     gl.drawArrays( gl.LINE_STRIP, 0, selectedPoints.length );
