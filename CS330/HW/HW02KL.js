@@ -16,7 +16,7 @@ function init()
     var sqrt = (Math.sqrt(3))/2;
     points=[
     vec2(-1.0,0.0),
-    vec2(1.0,0.0),
+
     
     //
     vec2(-1/3,0.0),
@@ -25,11 +25,13 @@ function init()
     //
     vec2(-7/9,0.0),
     vec2(-2/3, ((1/3)*sqrt)),
-    vec2(-5/9,0.0)
+    vec2(-5/9,0.0),
 
     //vec2(,0.0),
     //vec2(1/6, (()*sqrt)),
     //vec2(,0.0)
+        //
+    vec2(1.0,0.0),
     ];
     
     //
