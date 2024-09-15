@@ -114,10 +114,14 @@ function init()
 function render() {
     gl.clear( gl.COLOR_BUFFER_BIT );
 
-    gl.drawArrays( gl.POINTS, 0, points.length );
-    gl.drawArrays( gl.LINE_STRIP, 0, points.length );
-    gl.drawArrays( gl.POINTS, 0, sliderVal );
-    gl.drawArrays( gl.LINES_STRIP, 0, sliderVal );
+    if(sliderVal == 4) {
+        gl.drawArrays( gl.POINTS, 0, points.length );
+        gl.drawArrays( gl.LINE_STRIP, 0, points.length );
+    }
+    //gl.drawArrays( gl.POINTS, 0, points.length );
+    //gl.drawArrays( gl.LINE_STRIP, 0, points.length );
+    //gl.drawArrays( gl.POINTS, 0, sliderVal );
+    //gl.drawArrays( gl.LINES_STRIP, 0, sliderVal );
     //gl.drawArrays( gl.LINE_STRIP, 0, points.length );
     //gl.drawArrays( gl.LINE_LOOP, 0, points.length );
 }
