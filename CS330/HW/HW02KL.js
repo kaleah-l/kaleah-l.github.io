@@ -114,7 +114,7 @@ function init()
 function render() {
     gl.clear( gl.COLOR_BUFFER_BIT );
 
-    sliderVal = document.getElementById("slider");
+    sliderVal = document.getElementById("slider").value;
     if(sliderVal.value = 4) {
         gl.drawArrays( gl.POINTS, 0, points.length );
         gl.drawArrays( gl.LINE_STRIP, 0, points.length );
