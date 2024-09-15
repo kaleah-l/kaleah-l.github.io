@@ -185,7 +185,7 @@ function init()
 function render() {
     gl.clear( gl.COLOR_BUFFER_BIT );
 
-    var sliderVal = parseInt(document.getElementById("slider").value);
+    var sliderVal = parseInt(document.getElementById("slider").value, 10;
     var selectedPoints;
 
     if(sliderVal.value === 4) {
