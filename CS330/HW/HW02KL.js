@@ -1,5 +1,5 @@
 //Author: Kaleah Leisher
-//Date: 9/10/24
+//Date: 9/15/24
 
 "use strict";
 var gl;
@@ -191,16 +191,16 @@ function render() {
     gl.clear( gl.COLOR_BUFFER_BIT );
 
     sliderVal = document.getElementById("slider").value;
-    if(sliderVal.value = 4) {
+    if(sliderVal.value == 4) {
         gl.drawArrays( gl.POINTS, 0, points4.length );
         gl.drawArrays( gl.LINE_STRIP, 0, points4.length );
-    } else if (sliderVal.value = 3) {
+    } else if (sliderVal.value == 3) {
         gl.drawArrays( gl.POINTS, 0, points3.length );
         gl.drawArrays( gl.LINE_STRIP, 0, points3.length );
-    } else if (sliderVal.value = 2) {
+    } else if (sliderVal.value == 2) {
         gl.drawArrays( gl.POINTS, 0, points2.length );
         gl.drawArrays( gl.LINE_STRIP, 0, points2.length );
-    } else if (sliderVal.value = 1) {
+    } else if (sliderVal.value == 1) {
         gl.drawArrays( gl.POINTS, 0, points1.length );
         gl.drawArrays( gl.LINE_STRIP, 0, points1.length );
     } else {
