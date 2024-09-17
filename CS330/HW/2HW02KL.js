@@ -3,7 +3,6 @@
 "use strict";
 var gl;
 var vertices;
-var colors;
 var sliderVal = 1;
 
 init();
@@ -82,9 +81,8 @@ function init()
         vec2(1.0,0.0)
     ];
     
-    //
     //  Configure WebGL
-    //
+
     gl.viewport( 0, 0, canvas.width, canvas.height );
     gl.clearColor( 1.0, 1.0, 1.0, 1.0 );
 
@@ -120,6 +118,7 @@ function render() {
     points=[];
     if(sliderVal === 0) {
         points.push(vertices[0]);
+        points.push(vertices[46]);
     } else if (sliderVal.valueOf === 1) {
         points.push(vertices[22]);
         points.push(vertices[23]);
