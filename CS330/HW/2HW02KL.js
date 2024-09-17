@@ -122,7 +122,7 @@ function render() {
     //var sliderVal = parseInt(document.getElementById("slider").value);
     //var selectedPoints;
     gl.drawArrays( gl.POINTS, 0, selectedPoints.length );
-    gl.drawArrays( gl.LINES, 0, selectedPoints.length );
+    gl.drawArrays( gl.LINE_STRIP, 0, selectedPoints.length );
 
 
     //gl.drawArrays( gl.POINTS, 0, points.length );
