@@ -97,6 +97,7 @@ function init()
 
     var bufferId = gl.createBuffer();
     gl.bindBuffer( gl.ARRAY_BUFFER, bufferId );
+    gl.bufferData( gl.ARRAY_BUFFER, flatten(vertices), gl.STATIC_DRAW );
 
     // Associate out shader variables with our data buffer
 
@@ -201,7 +202,6 @@ function render() {
         points.push(vertices[46]);
     }
 
-    gl.bufferData( gl.ARRAY_BUFFER, flatten(vertices), gl.STATIC_DRAW );
     gl.bufferSubData( gl.ARRAY_BUFFER, 0, flatten(points));
     gl.clear( gl.COLOR_BUFFER_BIT );
     gl.drawArrays( gl.LINE_STRIP, 0, points.length );
