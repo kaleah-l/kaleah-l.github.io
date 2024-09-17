@@ -121,5 +121,5 @@ function render() {
     gl.bufferData( gl.ARRAY_BUFFER, flatten(points), gl.STATIC_DRAW );
     gl.clear( gl.COLOR_BUFFER_BIT );
     gl.drawArrays( gl.LINE_STRIP, 0, points.length );
-    points=[]
+    points=[];
 }
