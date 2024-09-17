@@ -114,9 +114,24 @@ function init()
 };
 
 function render() {
+    
+    var sliderVal = parseInt(document.getElementById("slider").value);
+
     points=[];
-    points.push(vertices[0]);
-    points.push(vertices[46]);
+    if(sliderVal == 0) {
+        points.push(vertices[0]);
+        points.push(vertices[46]);
+    } else if (sliderVal.valueOf === 1) {
+        points.push(vertices[22]);
+        points.push(vertices[23]);
+        points.push(vertices[24]);
+    } else if (sliderVal.valueOf === 2) {
+        points.push();
+    } else if (sliderVal.valueOf === 3) {
+        points.push();
+    } else {
+        
+    }
 
     gl.bufferSubData( gl.ARRAY_BUFFER, 0, flatten(points));
     gl.clear( gl.COLOR_BUFFER_BIT );
