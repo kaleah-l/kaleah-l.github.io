@@ -118,19 +118,88 @@ function render() {
     var sliderVal = parseInt(document.getElementById("slider").value);
 
     points=[];
-    if(sliderVal == 0) {
+    if(sliderVal === 0) {
         points.push(vertices[0]);
-        points.push(vertices[46]);
     } else if (sliderVal.valueOf === 1) {
         points.push(vertices[22]);
         points.push(vertices[23]);
         points.push(vertices[24]);
+        points.push(vertices[46]);
     } else if (sliderVal.valueOf === 2) {
-        points.push();
+        points.push(vertices[10]);
+        points.push(vertices[11]);
+        points.push(vertices[12]);
+        points.push(vertices[22]);
+        points.push(vertices[23]);
+        points.push(vertices[24]);
+        points.push(vertices[34]);
+        points.push(vertices[35]);
+        points.push(vertices[36]);
+        points.push(vertices[46]);
     } else if (sliderVal.valueOf === 3) {
-        points.push();
+        points.push(vertices[4]);
+        points.push(vertices[5]);
+        points.push(vertices[6]);
+        points.push(vertices[10]);
+        points.push(vertices[11]);
+        points.push(vertices[12]);
+        points.push(vertices[22]);
+        points.push(vertices[23]);
+        points.push(vertices[24]);
+        points.push(vertices[34]);
+        points.push(vertices[35]);
+        points.push(vertices[36]);
+        points.push(vertices[40]);
+        points.push(vertices[41]);
+        points.push(vertices[42]);
+        points.push(vertices[46]);
     } else {
-        
+        points.push(vertices[1]);
+        points.push(vertices[2]);
+        points.push(vertices[3]);
+        points.push(vertices[4]);
+        points.push(vertices[5]);
+        points.push(vertices[6]);
+        points.push(vertices[7]);
+        points.push(vertices[8]);
+        points.push(vertices[9]);
+        points.push(vertices[10]);
+        points.push(vertices[11]);
+        points.push(vertices[12]);
+        points.push(vertices[13]);
+        points.push(vertices[14]);
+        points.push(vertices[15]);
+        points.push(vertices[16]);
+        points.push(vertices[17]);
+        points.push(vertices[18]);
+        points.push(vertices[19]);
+        points.push(vertices[20]);
+        points.push(vertices[21]);
+        points.push(vertices[22]);
+        points.push(vertices[23]);
+        points.push(vertices[24]);
+        points.push(vertices[25]);
+        points.push(vertices[26]);
+        points.push(vertices[27]);
+        points.push(vertices[28]);
+        points.push(vertices[29]);
+        points.push(vertices[30]);
+        points.push(vertices[31]);
+        points.push(vertices[32]);
+        points.push(vertices[33]);
+        points.push(vertices[34]);
+        points.push(vertices[35]);
+        points.push(vertices[36]);
+        points.push(vertices[37]);
+        points.push(vertices[38]);
+        points.push(vertices[39]);
+        points.push(vertices[40]);
+        points.push(vertices[41]);
+        points.push(vertices[42]);
+        points.push(vertices[43]);
+        points.push(vertices[44]);
+        points.push(vertices[45]);
+        points.push(vertices[46]);
     }
 
     gl.bufferSubData( gl.ARRAY_BUFFER, 0, flatten(points));
