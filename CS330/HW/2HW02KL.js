@@ -3,6 +3,9 @@
 "use strict";
 var gl;
 var points;
+var colors;
+var sliderVal = 1;
+
 init();
 
 function init()
@@ -13,71 +16,29 @@ function init()
     if ( !gl ) { alert( "WebGL isn't available" ); }
 
     points=[
-        vec2(-1.0,0.0),
-
-        vec2(-79/81,0.0),
-        vec2(-78/81, ((2/81)*sqrt)),
-        vec2(-77/81,0.0),
-        
-        vec2(-25/27,0.0),
-        vec2(-8/9, ((2/27)*sqrt)),
-        vec2(-23/27,0.0),
-    
-        vec2(-67/81,0.0),
-        vec2(-66/81, ((2/81)*sqrt)),
-        vec2(-65/81,0.0),
-    
-        vec2(-7/9,0.0),
-        vec2(-2/3, ((2/9)*sqrt)),
-        vec2(-5/9,0.0),
-    
-        vec2(-43/81,0.0),
-        vec2(-42/81, ((2/81)*sqrt)),
-        vec2(-41/81,0.0),
-    
-        vec2(-13/27,0.0),
-        vec2(-4/9, ((2/27)*sqrt)),
-        vec2(-11/27,0.0),
-    
-        vec2(-31/81,0.0),
-        vec2(-30/81, ((2/81)*sqrt)),
-        vec2(-29/81,0.0),
-    
-        vec2(-1/3,0.0),
-        vec2(0.0, ((2/3)*sqrt)),
-        vec2(1/3,0.0),
-    
-        vec2(29/81,0.0),
-        vec2(30/81, ((2/81)*sqrt)),
-        vec2(31/81,0.0),
-        
-        vec2(11/27,0.0),
-        vec2(4/9, ((2/27)*sqrt)),
-        vec2(13/27,0.0),
-    
-        vec2(41/81,0.0),
-        vec2(42/81, ((2/81)*sqrt)),
-        vec2(43/81,0.0),
-    
-        vec2(5/9,0.0),
-        vec2(2/3, ((2/9)*sqrt)),
-        vec2(7/9,0.0),
-    
-        vec2(65/81,0.0),
-        vec2(66/81, ((2/81)*sqrt)),
-        vec2(67/81,0.0),
-    
-        vec2(23/27,0.0),
-        vec2(8/9, ((2/27)*sqrt)),
-        vec2(25/27,0.0),
-    
-        vec2(77/81,0.0),
-        vec2(78/81, ((2/81)*sqrt)),
-        vec2(79/81,0.0),
-    
-        vec2(1.0,0.0)
+    vec2(-0.95,0.95),
+    vec2(0,0.95),
+    vec2(0.95,0.95),
+    vec2(-0.95,0.0),
+    vec2(0,0.0),
+    vec2(0.95,0.0),
+    vec2(-0.95,-0.95),
+    vec2(0.0,-0.95),
+    vec2(0.95,-0.95)
     ];
 
+    colors=[
+    vec4( 1.0 , 0.0 , 0.0 , 1.0 ),
+    vec4( 0.0 , 1.0 , 0.0 , 1.0 ),
+    vec4( 0.0 , 0.0 , 1.0 , 1.0 ),
+    vec4( 1.0 , 1.0 , 0.0 , 1.0 ),
+    vec4( 0.0 , 1.0 , 1.0 , 1.0 ),
+    vec4( 1.0 , 0.0 , 1.0 , 1.0 ),
+    vec4( 0.8 , 0.5 , 0.2 , 1.0 ),
+    vec4( 0.2 , 0.5 , 0.8 , 1.0 ),
+    vec4( 0.2 , 0.8 , 0.5 , 1.0 )
+    ];
+    
     //
     //  Configure WebGL
     //
@@ -98,14 +59,26 @@ function init()
     // Associate out shader variables with our data buffer
 
     var positionLoc = gl.getAttribLocation( program, "aPosition" );
-    gl.vertexAttribPointer( positionLoc , 2, gl.FLOAT, false, 0, 0 );
+    gl.vertexAttribPointer( positionLoc, 2, gl.FLOAT, false, 0, 0 );
     gl.enableVertexAttribArray( positionLoc );
+
+    var cbufferId = gl.createBuffer();
+    gl.bindBuffer( gl.ARRAY_BUFFER, cbufferId );
+    gl.bufferData( gl.ARRAY_BUFFER, flatten(colors), gl.STATIC_DRAW );
+    
+    var colorLoc = gl.getAttribLocation( program, "aColor" );
+    gl.vertexAttribPointer( colorLoc, 4, gl.FLOAT, false, 0, 0 );
+    gl.enableVertexAttribArray( colorLoc );
+
+    document.getElementById("slider").onchange = function(event) {
+        sliderVal = parseInt(event.target.value);
+        render();
+    };
 
     render();
 };
 
 function render() {
     gl.clear( gl.COLOR_BUFFER_BIT );
-    gl.drawArrays( gl.POINTS, 0, points.length );
-    //gl.drawArrays( gl., 0, points.length );
+    gl.drawArrays( gl.POINTS, 0, sliderVal );
 }
