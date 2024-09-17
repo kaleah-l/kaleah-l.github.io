@@ -189,11 +189,11 @@ function render() {
 
     if(sliderVal.value === 4) {
         selectedPoints=points4;
-    } else if (sliderVal.value === 3) {
+    } else if (sliderVal.valueOf === 3) {
         selectedPoints=points3;
-    } else if (sliderVal.value === 2) {
+    } else if (sliderVal.valueOf === 2) {
         selectedPoints=points2;
-    } else if (sliderVal.value === 1) {
+    } else if (sliderVal.valueOf === 1) {
         selectedPoints=points2;
     } else {
         selectedPoints=points;
