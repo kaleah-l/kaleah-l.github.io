@@ -115,8 +115,8 @@ function init()
 
 function render() {
     points=[];
-    points.push(vertices[0])
-    points.push(vertices[46])
+    points.push(vertices[0]);
+    points.push(vertices[46]);
 
 
     gl.clear( gl.COLOR_BUFFER_BIT );
