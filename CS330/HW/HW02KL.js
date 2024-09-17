@@ -119,36 +119,36 @@ function init()
     ];
 
     points2=[
-        vec2(-1.0,0.0),
+    vec2(-1.0,0.0),
     
-        vec2(-7/9,0.0),
-        vec2(-2/3, ((2/9)*sqrt)),
-        vec2(-5/9,0.0),
+    vec2(-7/9,0.0),
+    vec2(-2/3, ((2/9)*sqrt)),
+    vec2(-5/9,0.0),
     
-        vec2(-1/3,0.0),
-        vec2(0.0, ((2/3)*sqrt)),
-        vec2(1/3,0.0),
+    vec2(-1/3,0.0),
+    vec2(0.0, ((2/3)*sqrt)),
+    vec2(1/3,0.0),
         
-        vec2(5/9,0.0),
-        vec2(2/3, ((2/9)*sqrt)),
-        vec2(7/9,0.0),
+    vec2(5/9,0.0),
+    vec2(2/3, ((2/9)*sqrt)),
+    vec2(7/9,0.0),
         
-        vec2(1.0,0.0)
+    vec2(1.0,0.0)
     ];
 
     points1=[
-        vec2(-1.0,0.0),
+    vec2(-1.0,0.0),
     
-        vec2(-1/3,0.0),
-        vec2(0.0, ((2/3)*sqrt)),
-        vec2(1/3,0.0),
+    vec2(-1/3,0.0),
+    vec2(0.0, ((2/3)*sqrt)),
+    vec2(1/3,0.0),
         
-        vec2(1.0,0.0)
+    vec2(1.0,0.0)
     ];
 
     points=[
-        vec2(-1.0,0.0),
-        vec2(1.0,0.0)
+    vec2(-1.0,0.0),
+    vec2(1.0,0.0)
     ];
     
     
@@ -194,7 +194,7 @@ function render() {
     } else if (sliderVal.valueOf === 2) {
         selectedPoints=points2;
     } else if (sliderVal.valueOf === 1) {
-        selectedPoints=points2;
+        selectedPoints=points1;
     } else {
         selectedPoints=points;
     }
