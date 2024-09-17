@@ -15,6 +15,7 @@ function init()
     gl = canvas.getContext('webgl2');
     if ( !gl ) { alert( "WebGL isn't available" ); }
 
+    var sqrt = (Math.sqrt(3))/2;
     points=[
         vec2(-1.0,0.0),
 
