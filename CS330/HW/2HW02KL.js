@@ -48,7 +48,7 @@ function init()
 
 function render() {
     
-    var sliderVal = parseInt(document.getElementById("slider").value);
+    //var sliderVal = parseInt(document.getElementById("slider").value);
 
     points=[];
 
