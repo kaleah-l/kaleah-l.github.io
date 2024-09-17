@@ -116,9 +116,10 @@ function init()
 function render() {
     points=[];
     points.push(vertices[0]);
-    points.push(vertices[2]);
+    points.push(vertices[46]);
 
     gl.bufferData( gl.ARRAY_BUFFER, flatten(points), gl.STATIC_DRAW );
     gl.clear( gl.COLOR_BUFFER_BIT );
     gl.drawArrays( gl.LINE_STRIP, 0, points.length );
+    points=[]
 }
