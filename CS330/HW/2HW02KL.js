@@ -2,7 +2,7 @@
 //Date: 9/15/24
 "use strict";
 var gl;
-var points;
+var vertices;
 var colors;
 var sliderVal = 1;
 
