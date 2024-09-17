@@ -16,7 +16,7 @@ function init()
     if ( !gl ) { alert( "WebGL isn't available" ); }
 
     var sqrt = (Math.sqrt(3))/2;
-    points=[
+    vertices=[
         vec2(-1.0,0.0),
 
         vec2(-79/81,0.0),
@@ -97,21 +97,13 @@ function init()
 
     var bufferId = gl.createBuffer();
     gl.bindBuffer( gl.ARRAY_BUFFER, bufferId );
-    gl.bufferData( gl.ARRAY_BUFFER, flatten(points), gl.STATIC_DRAW );
+    gl.bufferData( gl.ARRAY_BUFFER, flatten(vertices), gl.STATIC_DRAW );
 
     // Associate out shader variables with our data buffer
 
     var positionLoc = gl.getAttribLocation( program, "aPosition" );
     gl.vertexAttribPointer( positionLoc, 2, gl.FLOAT, false, 0, 0 );
     gl.enableVertexAttribArray( positionLoc );
-
-    //var cbufferId = gl.createBuffer();
-    //gl.bindBuffer( gl.ARRAY_BUFFER, cbufferId );
-    //gl.bufferData( gl.ARRAY_BUFFER, flatten(colors), gl.STATIC_DRAW );
-    
-    //var colorLoc = gl.getAttribLocation( program, "aColor" );
-    //gl.vertexAttribPointer( colorLoc, 4, gl.FLOAT, false, 0, 0 );
-    //gl.enableVertexAttribArray( colorLoc );
 
     document.getElementById("slider").onchange = function(event) {
         sliderVal = parseInt(event.target.value);
@@ -122,6 +114,11 @@ function init()
 };
 
 function render() {
+    points=[];
+    points.push(vertices[0])
+    points.push(vertices[46])
+
+
     gl.clear( gl.COLOR_BUFFER_BIT );
     gl.drawArrays( gl.LINE_STRIP, 0, points.length );
 }
