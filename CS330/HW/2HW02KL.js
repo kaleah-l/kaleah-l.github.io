@@ -26,18 +26,6 @@ function init()
     vec2(0.0,-0.95),
     vec2(0.95,-0.95)
     ];
-
-    colors=[
-    vec4( 1.0 , 0.0 , 0.0 , 1.0 ),
-    vec4( 0.0 , 1.0 , 0.0 , 1.0 ),
-    vec4( 0.0 , 0.0 , 1.0 , 1.0 ),
-    vec4( 1.0 , 1.0 , 0.0 , 1.0 ),
-    vec4( 0.0 , 1.0 , 1.0 , 1.0 ),
-    vec4( 1.0 , 0.0 , 1.0 , 1.0 ),
-    vec4( 0.8 , 0.5 , 0.2 , 1.0 ),
-    vec4( 0.2 , 0.5 , 0.8 , 1.0 ),
-    vec4( 0.2 , 0.8 , 0.5 , 1.0 )
-    ];
     
     //
     //  Configure WebGL
@@ -62,13 +50,13 @@ function init()
     gl.vertexAttribPointer( positionLoc, 2, gl.FLOAT, false, 0, 0 );
     gl.enableVertexAttribArray( positionLoc );
 
-    var cbufferId = gl.createBuffer();
-    gl.bindBuffer( gl.ARRAY_BUFFER, cbufferId );
-    gl.bufferData( gl.ARRAY_BUFFER, flatten(colors), gl.STATIC_DRAW );
+    //var cbufferId = gl.createBuffer();
+    //gl.bindBuffer( gl.ARRAY_BUFFER, cbufferId );
+    //gl.bufferData( gl.ARRAY_BUFFER, flatten(colors), gl.STATIC_DRAW );
     
-    var colorLoc = gl.getAttribLocation( program, "aColor" );
-    gl.vertexAttribPointer( colorLoc, 4, gl.FLOAT, false, 0, 0 );
-    gl.enableVertexAttribArray( colorLoc );
+    //var colorLoc = gl.getAttribLocation( program, "aColor" );
+    //gl.vertexAttribPointer( colorLoc, 4, gl.FLOAT, false, 0, 0 );
+    //gl.enableVertexAttribArray( colorLoc );
 
     document.getElementById("slider").onchange = function(event) {
         sliderVal = parseInt(event.target.value);
