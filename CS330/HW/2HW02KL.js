@@ -123,5 +123,5 @@ function init()
 
 function render() {
     gl.clear( gl.COLOR_BUFFER_BIT );
-    gl.drawArrays( gl.LINES, 0, sliderVal );
+    gl.drawArrays( gl.LINES, 0, points.length );
 }
