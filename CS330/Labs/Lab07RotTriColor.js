@@ -32,9 +32,9 @@ function init()
     gl.useProgram(program);
 
     var vertices = [
-        vec2(      ,      ),
-        vec2(      ,      ),
-        vec2(      ,      )
+        vec2(-1.0,-1.0),
+        vec2(-1.0,1.0),
+        vec2(0.0,1.0)
     ];
 
 
