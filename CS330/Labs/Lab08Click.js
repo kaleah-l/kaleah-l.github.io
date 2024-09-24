@@ -19,6 +19,7 @@ function init() {
     gl = canvas.getContext('webgl2');
     if (!gl) alert("WebGL 2.0 isn't available");
 
+    // 1 - listener event for the mouse click
     // 2 - listener event for the button which toggles whether to save the points clicked
     
     var savePoints = document.getElementById("Button1");
@@ -28,7 +29,7 @@ function init() {
         render();
     });
 
-    // 1 - listener event for the mouse click
+    // 3 - will later need to be updated in conjunction with whether the points are saved
 
     canvas.addEventListener("mousedown", function(event){
         if (!savePoints) {
@@ -39,12 +40,6 @@ function init() {
         render();
      });
 
-    // 3 - will later need to be updated in conjunction with whether the points are saved
-    canvas.addEventListener("mousedown", function(event){
-       t  = 
-       points.push(t);
-       render();
-    });
 
     gl.viewport(0, 0, canvas.width, canvas.height);
     gl.clearColor(1.0, 1.0, 1.0, 1.0);
