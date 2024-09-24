@@ -1,3 +1,6 @@
+//Author: Kaleah Leisher
+//Date: 9/23/24
+
 "use strict";
 
 var canvas;
@@ -18,8 +21,24 @@ function init() {
 
     // 2 - listener event for the button which toggles whether to save the points clicked
     
+    var savePoints = document.getElementById("Button1");
+    savePoints.addEventListener("click", function(){
+        savePoints = !savePoints;
+        points=[vec2(0.0,0.0)];
+        render();
+    });
 
     // 1 - listener event for the mouse click
+
+    canvas.addEventListener("mousedown", function(event){
+        if (!savePoints) {
+            points=[vec2(  0.00 ,  0.00 )];
+        }
+        t  = vec2(2*event.clientX/canvas.width-1,2*(canvas.height-event.clientY)/canvas.height-1);
+        points.push(t);
+        render();
+     });
+
     // 3 - will later need to be updated in conjunction with whether the points are saved
     canvas.addEventListener("mousedown", function(event){
        t  = 
