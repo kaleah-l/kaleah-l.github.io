@@ -19,6 +19,15 @@ void
 main()
 {
     gl_Position = aPosition;
+/*
+    float t = ut;
+
+    gl_Position.x = t*aPosition.x + (1.0-t)*bPosition.x;
+    gl_Position.y = t*aPosition.y + (1.0-t)*bPosition.y;
+    gl_Position.z = 0.0;
+    gl_Position.w = 1.0;
+*/ 
+
 }
 </script>
 
@@ -35,9 +44,10 @@ main()
 }
 </script>
 
-<script src="../Common/initShaders.js"></script>
-<script src="../Common/MVnew.js"></script>
-<script src="HW03.js"></script>
+<script type="text/javascript" src="../Common/utility.js"></script>
+<script type="text/javascript" src="../Common/initShaders.js"></script>
+<script type="text/javascript" src="../Common/MVnew.js"></script>
+<script src="HW03_2.js"></script>
 
 
 </body>
