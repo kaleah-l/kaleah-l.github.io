@@ -1,13 +1,19 @@
 var canvas;
 var gl;
-var positions;
+
 var bufferId;
+var bufferIdA;
+var bufferIdB;
+
 var triangleA;
 var triangleB;
-var triangleA;
 
 var delay = 100;
 var toggleMorph = true;
+
+var deltaT = 0.01;
+var tLoc;
+var tParam;
 
 init();
 
@@ -22,20 +28,20 @@ function init()
 
     triangleA = [
         vec2(-0.5,-0.6),
+        //vec2(0,0.8),
         vec2(0,0.8),
-        vec2(0,0.8),
+        //vec2(0.6,-0.3),
         vec2(0.6,-0.3),
-        vec2(0.6,-0.3),
-        vec2(-0.5,-0.6)
+        //vec2(-0.5,-0.6)
     ];
 
     triangleB = [
         vec2(-0.2,-0.3),
+        //vec2(0.3,0.4),
         vec2(0.3,0.4),
-        vec2(0.3,0.4),
+        //vec2(0.8,-0.6),
         vec2(0.8,-0.6),
-        vec2(0.8,-0.6),
-        vec2(-0.2,-0.3)
+        //vec2(-0.2,-0.3)
     ];
 
     out = []
@@ -54,10 +60,10 @@ function init()
 
     // Load the data into the GPU
 
-    //bufferIdA = gl.createBuffer();
-    //bufferIdB = gl.createBuffer();
-    //gl.bindBuffer(gl.ARRAY_BUFFER, bufferIdA);
-    //gl.bindBuffer(gl.ARRAY_BUFFER, bufferIdB);
+    bufferIdA = gl.createBuffer();
+    bufferIdB = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, bufferIdA);
+    gl.bindBuffer(gl.ARRAY_BUFFER, bufferIdB);
     //gl.bufferSubData(gl.ARRAY_BUFFER, 0, flatten(triangleA));
     //gl.bufferSubData(gl.ARRAY_BUFFER, 0, flatten(triangleB));
 
@@ -68,58 +74,52 @@ function init()
 
     // Associate out shader variables with our data buffer
 
-    var positionLoc = gl.getAttribLocation(program, "aPosition");
-    gl.vertexAttribPointer(positionLoc, 2, gl.FLOAT, false, 0, 0);
-    gl.enableVertexAttribArray(positionLoc);
+    var positionLocA = gl.getAttribLocation(program, "aPosition");
+    gl.vertexAttribPointer(positionLocA, 2, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(positionLocA);
 
-    //var positionLoc = gl.getAttribLocation(program, "bPosition");
-    //gl.vertexAttribPointer(positionLoc, 2, gl.FLOAT, false, 0, 0);
-    //gl.enableVertexAttribArray(positionLoc);
+    var positionLocB = gl.getAttribLocation(program, "bPosition");
+    gl.vertexAttribPointer(positionLocB, 2, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(positionLocB);
 
 
     //from lab 7
-    //tLoc = gl.getUniformLocation( program, "ut" );
+    tLoc = gl.getUniformLocation( program, "t" );
+    //thetaLoc = gl.getUniformLocation( program, "uTheta" );
 
     // Toggle Button
-    //var Btn = document.getElementById("toggleBtn");
-    //Btn.addEventListener("click", toggleMorph);
+    var Btn = document.getElementById("toggleBtn");
+    Btn.addEventListener("click", toggleMorph);
 
     // Change morph on or off
-    //function toggleMorph {
-    //    if (toggleMorph == false){
-    //        toggleMorph == true;
-    //    } else {
-    //        toggleMorph == false;
-    //    }
-    //}
-
-    // while (toggleMorph == true) {
-        
-    // }
+    function toggleMorph() {
+        if (toggleMorph == false){
+            toggleMorph == true;
+        } else {
+            toggleMorph == false;
+        }
+    }
 
     render();
 };
 
 function render()
 {
+    gl.clear( gl.COLOR_BUFFER_BIT );
+
+    if (toggleMorph) {
+        tParam += deltaT;
+        if (tParam >= 1.0 || tParam <= 0.0) {
+            deltaT = -deltaT;
+        }
+    }
+    gl.uniform1f(tLoc, tParam);
 
     //use uniform to set and send t
-
-    //How do I set t?
-
-    // if (t==0) {
-
-    // } else if (t==1) {
-
-    // } else {
-
-    // }
-
     //from lab 7
-    //(Unsure of this) -> theta += (rotation ? 0.1 : 0.0);
-    //gl.uniform1f(tLoc, t);
+    //theta += (rotation ? 0.1 : 0.0);
+    //gl.uniform1f(thetaLoc, theta);
 
-    gl.clear( gl.COLOR_BUFFER_BIT );
     gl.drawArrays( gl.LINE_LOOP, 0, out.length);
     //gl.drawArrays( gl.LINE_LOOP, 0, triangleB.length);
 

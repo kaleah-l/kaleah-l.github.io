@@ -1,10 +1,15 @@
 var canvas;
 var gl;
+
 var positions;
+
 var bufferId;
+
 var triangleA;
 var triangleB;
-var triangleA;
+
+var deltaT = 0.01;
+var tLoc;
 
 var delay = 100;
 var toggleMorph = true;
@@ -54,15 +59,15 @@ function init()
 
     // Load the data into the GPU
 
-    //bufferIdA = gl.createBuffer();
-    //bufferIdB = gl.createBuffer();
-    //gl.bindBuffer(gl.ARRAY_BUFFER, bufferIdA);
-    //gl.bindBuffer(gl.ARRAY_BUFFER, bufferIdB);
+    bufferIdA = gl.createBuffer();
+    bufferIdB = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, bufferIdA);
+    gl.bindBuffer(gl.ARRAY_BUFFER, bufferIdB);
     //gl.bufferSubData(gl.ARRAY_BUFFER, 0, flatten(triangleA));
     //gl.bufferSubData(gl.ARRAY_BUFFER, 0, flatten(triangleB));
 
-    bufferId = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, bufferId);
+    //bufferId = gl.createBuffer();
+    //gl.bindBuffer(gl.ARRAY_BUFFER, bufferId);
     gl.bufferData(gl.ARRAY_BUFFER, 8*Math.pow(3, 6), gl.STATIC_DRAW);
     gl.bufferSubData(gl.ARRAY_BUFFER, 0, flatten(out));
 
@@ -72,30 +77,28 @@ function init()
     gl.vertexAttribPointer(positionLoc, 2, gl.FLOAT, false, 0, 0);
     gl.enableVertexAttribArray(positionLoc);
 
-    //var positionLoc = gl.getAttribLocation(program, "bPosition");
-    //gl.vertexAttribPointer(positionLoc, 2, gl.FLOAT, false, 0, 0);
-    //gl.enableVertexAttribArray(positionLoc);
+    var positionLoc = gl.getAttribLocation(program, "bPosition");
+    gl.vertexAttribPointer(positionLoc, 2, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(positionLoc);
 
 
     //from lab 7
-    //tLoc = gl.getUniformLocation( program, "ut" );
+    tLoc = gl.getUniformLocation( program, "t");
+
+    //thetaLoc = gl.getUniformLocation( program, "uTheta" );
 
     // Toggle Button
-    //var Btn = document.getElementById("toggleBtn");
-    //Btn.addEventListener("click", toggleMorph);
+    var Btn = document.getElementById("toggleBtn");
+    Btn.addEventListener("click", toggleMorph);
 
     // Change morph on or off
-    //function toggleMorph {
-    //    if (toggleMorph == false){
-    //        toggleMorph == true;
-    //    } else {
-    //        toggleMorph == false;
-    //    }
-    //}
-
-    // while (toggleMorph == true) {
-        
-    // }
+    function toggleMorph() {
+        if (toggleMorph == false){
+            toggleMorph == true;
+        } else {
+            toggleMorph == false;
+        }
+    }
 
     render();
 };
@@ -103,23 +106,16 @@ function init()
 function render()
 {
 
-    //use uniform to set and send t
-
-    //How do I set t?
-
-    // if (t==0) {
-
-    // } else if (t==1) {
-
-    // } else {
-
-    // }
+    gl.clear( gl.COLOR_BUFFER_BIT );
 
     //from lab 7
-    //(Unsure of this) -> theta += (rotation ? 0.1 : 0.0);
-    //gl.uniform1f(tLoc, t);
+    tParam += deltaT;
+    if (tParam >= 1.0 || tParam <= 0.0) { 
+        deltaT = -deltaT;
+    }
+    
+    gl.uniform1f(tLoc, tParam);
 
-    gl.clear( gl.COLOR_BUFFER_BIT );
     gl.drawArrays( gl.LINE_LOOP, 0, out.length);
     //gl.drawArrays( gl.LINE_LOOP, 0, triangleB.length);
 
