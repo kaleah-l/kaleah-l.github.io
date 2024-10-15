@@ -30,6 +30,22 @@ function init()
 
     colorCube();
 
+    //axes vertices
+    positions.push( vec4(0.0,0.0,0.0,1.0) );
+    positions.push( vec4(1.0,0.0,0.0,1.0) );
+    positions.push( vec4(0.0,0.0,0.0,1.0) );
+    positions.push( vec4(0.0,1.0,0.0,1.0) );
+    positions.push( vec4(0.0,0.0,0.0,1.0) );
+    positions.push( vec4(0.0,0.0,1.0,1.0) );
+
+    //axes colors
+    colors.push( vec4(1.0,0.0,0.0,1.0) );
+    colors.push( vec4(1.0,0.0,1.0,1.0) );
+    colors.push( vec4(0.0,1.0,0.0,1.0) );
+    colors.push( vec4(0.0,1.0,1.0,1.0) );
+    colors.push( vec4(0.0,0.0,1.0,1.0) );
+    colors.push( vec4(0.3,0.3,1.0,1.0) );
+
     gl.viewport(0, 0, canvas.width, canvas.height);
     gl.clearColor(1.0, 1.0, 1.0, 1.0);
 
@@ -133,8 +149,10 @@ function render()
 {
     gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-    if(toggle)
+    if(toggle) {
     theta[axis] += 2.0;
+    }
+
     gl.uniform3fv(thetaLoc, theta);
 
     gl.drawArrays(gl.TRIANGLES, 0, numPositions);
