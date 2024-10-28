@@ -7,7 +7,9 @@ var numPositions  = 36;
 //var numPositions  = 72;
 
 var positions = [];
+var positions2 = [];
 var colors = [];
+var colors2 = [];
 
 var xAxis = 0;
 var yAxis = 1;
@@ -72,6 +74,7 @@ function init()
     var program = initShaders(gl, "vertex-shader", "fragment-shader");
     gl.useProgram(program);
 
+    //cube 1 colors
     var cBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, cBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, flatten(colors), gl.STATIC_DRAW);
@@ -80,14 +83,32 @@ function init()
     gl.vertexAttribPointer( colorLoc, 4, gl.FLOAT, false, 0, 0 );
     gl.enableVertexAttribArray( colorLoc );
 
+    //cube 1
     var vBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, vBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, flatten(positions), gl.STATIC_DRAW);
 
-
     var positionLoc = gl.getAttribLocation(program, "aPosition");
     gl.vertexAttribPointer(positionLoc, 4, gl.FLOAT, false, 0, 0);
     gl.enableVertexAttribArray(positionLoc);
+
+    //cube 2
+    // var vBuffer2 = gl.createBuffer();
+    // gl.bindBuffer(gl.ARRAY_BUFFER, vBuffer2);
+    // gl.bufferData(gl.ARRAY_BUFFER, flatten(positions2), gl.STATIC_DRAW);
+
+    // var positionLocB = gl.getAttribLocation(program, "bPosition");
+    // gl.vertexAttribPointer(positionLocB, 4, gl.FLOAT, false, 0, 0);
+    // gl.enableVertexAttribArray(positionLocB);
+
+    // cube 2 colors
+    // var cBufferB = gl.createBuffer();
+    // gl.bindBuffer(gl.ARRAY_BUFFER, cBufferB);
+    // gl.bufferData(gl.ARRAY_BUFFER, flatten(colors2), gl.STATIC_DRAW);
+
+    // var colorLocB = gl.getAttribLocation( program, "bColor" );
+    // gl.vertexAttribPointer( colorLocB, 4, gl.FLOAT, false, 0, 0 );
+    // gl.enableVertexAttribArray( colorLocB );
 
     thetaLoc = gl.getUniformLocation(program, "uTheta");
 
@@ -160,6 +181,17 @@ function quad(a, b, c, d, offset)
         vec4(0.0, 1.0, 1.0, 1.0)   // cyan
     ];
 
+    var vertexColors2 = [
+        vec4(0.0, 1.0, 0.0, 1.0),  // green
+        vec4(0.0, 0.0, 0.0, 1.0),  // black
+        vec4(0.0, 1.0, 1.0, 1.0),  // cyan
+        vec4(1.0, 0.0, 0.0, 1.0),  // red
+        vec4(1.0, 1.0, 0.0, 1.0),  // yellow
+        vec4(0.0, 0.0, 1.0, 1.0),  // blue
+        vec4(1.0, 0.0, 1.0, 1.0),  // magenta
+        vec4(1.0, 1.0, 1.0, 1.0)   // white
+    ];
+
     // We need to parition the quad into two triangles in order for
     // WebGL to be able to render it.  In this case, we create two
     // triangles from the quad indices
@@ -171,6 +203,13 @@ function quad(a, b, c, d, offset)
     for ( var i = 0; i < indices.length; ++i ) {
         positions.push( vertices[indices[i]]);
         colors.push( vertexColors[indices[i]] );
+
+        // for solid colored faces use
+        //colors.push(vertexColors[a]);
+    }
+    for ( var i = 0; i < indices.length; ++i ) {
+        positions2.push( vertices[indices[i]]);
+        colors2.push( vertexColors2[indices[i]] );
 
         // for solid colored faces use
         //colors.push(vertexColors[a]);
