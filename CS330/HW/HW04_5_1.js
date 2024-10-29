@@ -21,7 +21,7 @@ var thetaLoc;
 var tParam = 0.5;
 var tLoc;
 var deltaT = 0.008;
-var morph = true;
+var morph = false;
 
 var flag = false;
 
