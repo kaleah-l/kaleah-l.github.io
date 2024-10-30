@@ -8,8 +8,6 @@ var numPositions  = 144;
 var positionsP = [];
 var positionsL = [];
 var colors = [];
-var colorsP = [];
-var colorsL = [];
 
 var xAxis = 0;
 var yAxis = 1;
@@ -22,8 +20,7 @@ var thetaLoc;
 
 var tParam = 0.5;
 var tLoc;
-var colorLoc;
-var deltaT = 0.008;
+var deltaT = 0.005;
 var morph = false;
 
 var flag = false;
@@ -107,41 +104,41 @@ var verticesL = [
 ];
 
 var vertexColors = [
-  vec4(0.0, 0.0, 0.0, 1.0),  // black
-  vec4(1.0, 0.0, 0.0, 1.0),  // red
-  vec4(1.0, 1.0, 0.0, 1.0),  // yellow
-  vec4(0.0, 1.0, 0.0, 1.0),  // green
-  vec4(0.0, 0.0, 1.0, 1.0),  // blue
-  vec4(1.0, 0.0, 1.0, 1.0),  // magenta
-  vec4(0.0, 1.0, 1.0, 1.0),  // cyan
-  vec4(1.0, 0.4, 1.0, 1.0),  // pink
+    vec4(0.0, 0.0, 0.0, 1.0),  // black
+    vec4(1.0, 0.0, 0.0, 1.0),  // red
+    vec4(1.0, 1.0, 0.0, 1.0),  // yellow
+    vec4(0.0, 1.0, 0.0, 1.0),  // green
+    vec4(0.0, 0.0, 1.0, 1.0),  // blue
+    vec4(1.0, 0.0, 1.0, 1.0),  // magenta
+    vec4(0.0, 1.0, 1.0, 1.0),  // cyan
+    vec4(1.0, 0.4, 1.0, 1.0),  // pink
 
-  vec4(0.0, 0.0, 0.0, 1.0),  // black
-  vec4(1.0, 0.0, 0.0, 1.0),  // red
-  vec4(1.0, 1.0, 0.0, 1.0),  // yellow
-  vec4(0.0, 1.0, 0.0, 1.0),  // green
-  vec4(0.0, 0.0, 1.0, 1.0),  // blue
-  vec4(1.0, 0.0, 1.0, 1.0),  // magenta
-  vec4(0.0, 1.0, 1.0, 1.0),  // cyan
-  vec4(1.0, 0.4, 1.0, 1.0),  // pink
+    vec4(0.0, 0.0, 0.0, 1.0),  // black
+    vec4(1.0, 0.0, 0.0, 1.0),  // red
+    vec4(1.0, 1.0, 0.0, 1.0),  // yellow
+    vec4(0.0, 1.0, 0.0, 1.0),  // green
+    vec4(0.0, 0.0, 1.0, 1.0),  // blue
+    vec4(1.0, 0.0, 1.0, 1.0),  // magenta
+    vec4(0.0, 1.0, 1.0, 1.0),  // cyan
+    vec4(1.0, 0.4, 1.0, 1.0),  // pink
 
-  vec4(0.0, 0.0, 0.0, 1.0),  // black
-  vec4(1.0, 0.0, 0.0, 1.0),  // red
-  vec4(1.0, 1.0, 0.0, 1.0),  // yellow
-  vec4(0.0, 1.0, 0.0, 1.0),  // green
-  vec4(0.0, 0.0, 1.0, 1.0),  // blue
-  vec4(1.0, 0.0, 1.0, 1.0),  // magenta
-  vec4(0.0, 1.0, 1.0, 1.0),  // cyan
-  vec4(1.0, 0.4, 1.0, 1.0),  // pink
+    vec4(0.0, 0.0, 0.0, 1.0),  // black
+    vec4(1.0, 0.0, 0.0, 1.0),  // red
+    vec4(1.0, 1.0, 0.0, 1.0),  // yellow
+    vec4(0.0, 1.0, 0.0, 1.0),  // green
+    vec4(0.0, 0.0, 1.0, 1.0),  // blue
+    vec4(1.0, 0.0, 1.0, 1.0),  // magenta
+    vec4(0.0, 1.0, 1.0, 1.0),  // cyan
+    vec4(1.0, 0.4, 1.0, 1.0),  // pink
 
-  vec4(0.0, 0.0, 0.0, 1.0),  // black
-  vec4(1.0, 0.0, 0.0, 1.0),  // red
-  vec4(1.0, 1.0, 0.0, 1.0),  // yellow
-  vec4(0.0, 1.0, 0.0, 1.0),  // green
-  vec4(0.0, 0.0, 1.0, 1.0),  // blue
-  vec4(1.0, 0.0, 1.0, 1.0),  // magenta
-  vec4(0.0, 1.0, 1.0, 1.0),  // cyan
-  vec4(1.0, 0.4, 1.0, 1.0)   // pink
+    vec4(0.0, 0.0, 0.0, 1.0),  // black
+    vec4(1.0, 0.0, 0.0, 1.0),  // red
+    vec4(1.0, 1.0, 0.0, 1.0),  // yellow
+    vec4(0.0, 1.0, 0.0, 1.0),  // green
+    vec4(0.0, 0.0, 1.0, 1.0),  // blue
+    vec4(1.0, 0.0, 1.0, 1.0),  // magenta
+    vec4(0.0, 1.0, 1.0, 1.0),  // cyan
+    vec4(1.0, 0.4, 1.0, 1.0)   // pink
 ];
 
 init();
@@ -189,7 +186,6 @@ function init()
 
     thetaLoc = gl.getUniformLocation(program, "uTheta");
     tLoc = gl.getUniformLocation( program, "t" );
-    colorLoc = gl.getUniformLocation( program, "vColor" );
 
     //event listeners for buttons
 
@@ -306,7 +302,7 @@ function quad(a, b, c, d,cubeNum)
       for ( var i = 0; i < indices.length; ++i ) {
         positionsP.push( verticesP[indices[i]] );
         // for solid colored faces use
-        colorsP.push(vertexColors[c]);
+        colors.push(vertexColors[a]);
       }
     }
     if (cubeNum == 1)
@@ -314,7 +310,7 @@ function quad(a, b, c, d,cubeNum)
       for ( var i = 0; i < indices.length; ++i ) {
         positionsL.push( verticesL[indices[i]] );
         // for solid colored faces use
-        colorsL.push(vertexColors[a]);
+        colors.push(vertexColors[a]);
       }
     }
 }
@@ -329,10 +325,6 @@ function render()
 
     if(flag) theta[axis] += 2.0;
     gl.uniform3fv(thetaLoc, theta);
-
-    // set the color
-    colors = mix(colorsL,colorsP,tParam);
-    gl.uniform4fv(colorLoc,colors);
 
     gl.drawArrays(gl.TRIANGLES, 0, numPositions);
     requestAnimationFrame(render);
