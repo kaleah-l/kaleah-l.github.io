@@ -1,3 +1,6 @@
+//Author: Kaleah Leisher
+//Date: 10/30/24
+
 "use strict";
 
 var canvas;
