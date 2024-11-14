@@ -154,7 +154,7 @@ function init()
 };
 
 function render() {
-    gl.enable(gl.DEPTH_TEST);
+    //gl.enable(gl.DEPTH_TEST);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
     gl.drawArrays( gl.TRIANGLES, 0, positionsArray.length );
