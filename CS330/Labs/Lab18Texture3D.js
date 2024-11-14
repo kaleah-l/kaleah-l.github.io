@@ -141,9 +141,6 @@ function init()
 
     gl.uniform1i( gl.getUniformLocation(program, "uTextureMap"), 0);
 
-    if(flag) theta[axis] += 2.0;
-    gl.uniform3fv(thetaLoc, theta);
-
     thetaLoc = gl.getUniformLocation(program, "uTheta");
     document.getElementById("ButtonX").onclick = function(){axis = xAxis;};
     document.getElementById("ButtonY").onclick = function(){axis = yAxis;};
@@ -156,6 +153,9 @@ function init()
 function render() {
     //gl.enable(gl.DEPTH_TEST);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+
+    if(flag) theta[axis] += 2.0;
+    gl.uniform3fv(thetaLoc, theta);
 
     gl.drawArrays( gl.TRIANGLES, 0, positionsArray.length );
     requestAnimationFrame(render);
