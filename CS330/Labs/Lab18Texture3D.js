@@ -137,19 +137,18 @@ function init()
     gl.vertexAttribPointer(texCoordLoc, 2, gl.FLOAT, false, 0, 0);
     gl.enableVertexAttribArray(texCoordLoc);
 
-
-    thetaLoc = gl.getUniformLocation(program, "uTheta");
-    document.getElementById("ButtonX").onclick = function(){axis = xAxis;};
-    document.getElementById("ButtonY").onclick = function(){axis = yAxis;};
-    document.getElementById("ButtonZ").onclick = function(){axis = zAxis;};
-    document.getElementById("ButtonT").onclick = function(){flag = !flag;};
-
     configureTexture(image2);
 
     gl.uniform1i( gl.getUniformLocation(program, "uTextureMap"), 0);
 
     if(flag) theta[axis] += 2.0;
     gl.uniform3fv(thetaLoc, theta);
+
+    thetaLoc = gl.getUniformLocation(program, "uTheta");
+    document.getElementById("ButtonX").onclick = function(){axis = xAxis;};
+    document.getElementById("ButtonY").onclick = function(){axis = yAxis;};
+    document.getElementById("ButtonZ").onclick = function(){axis = zAxis;};
+    document.getElementById("ButtonT").onclick = function(){flag = !flag;};
 
     render();
 };
