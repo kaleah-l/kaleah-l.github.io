@@ -1,12 +1,13 @@
 "use strict";
 var gl;
 var points;
+var flag = true;
 // isoceles triangles to form a tetrahedron
     points=[
-    vec4(   ,    ,    , 1.0 ),
-    vec4(   ,    ,    , 1.0 ),
-    vec4(   ,    ,    , 1.0 ),
-    vec4(   ,    ,    , 1.0 )
+    vec4( 0.00 , 0.50 , 0.00 , 1.0 ),
+    vec4( -0.50 , -0.50 , 0.50 , 1.0 ),
+    vec4( 0.50 , -0.50 , 0.50 , 1.0 ),
+    vec4( 0.50 , -0.50 , -0.50 , 1.0 )
     ];
 
 var texSize = 64;
@@ -41,10 +42,10 @@ var positionsArray = [];
 var colorsArray = [];
 // define 4 different colors
 var vertexColors = [
-    vec4(   ,    ,    , 1.0 )
-    vec4(   ,    ,    , 1.0 )
-    vec4(   ,    ,    , 1.0 )
-    vec4(   ,    ,    , 1.0 )
+    vec4(0.0, 0.0, 1.0, 1.0), // blue
+    vec4(1.0, 0.0, 0.0, 1.0), // red
+    vec4(1.0, 1.0, 0.0, 1.0), // yellow
+    vec4(0.0, 1.0, 0.0, 1.0) // green
 ];
 
 window.onload = init;
@@ -63,16 +64,31 @@ function configureTexture(image) {
 
 function triangle (a,b,c,triNum)
 {
-
+    positionsArray.push(points[a]);
+    colorsArray.push(vertexColors[triNum]);
+    texCoordsArray.push(texCoord[0]);
+    positionsArray.push(points[b]);
+    colorsArray.push(vertexColors[triNum]);
+    texCoordsArray.push(texCoord[1]);
+    positionsArray.push(points[c]);
+    colorsArray.push(vertexColors[triNum]);
+    texCoordsArray.push(texCoord[2]);
 }
 
 function colorTetra()
 {
-    triangle( , ,  ,0);
-    triangle( , ,  ,1);
-    triangle( , ,  ,2);
-    triangle( , ,  ,3);
+    triangle(0,1,2 ,0);
+    triangle(0,2,3 ,1);
+    triangle(0,3,1 ,2);
+    triangle(1,3,2 ,3);
 }
+
+var xAxis = 0;
+var yAxis = 1;
+var zAxis = 2;
+var axis = xAxis;
+var theta = vec3(45.0, 45.0, 45.0);
+var thetaLoc;
 
 function init()
 {
@@ -121,14 +137,25 @@ function init()
     gl.vertexAttribPointer(texCoordLoc, 2, gl.FLOAT, false, 0, 0);
     gl.enableVertexAttribArray(texCoordLoc);
 
+
+    thetaLoc = gl.getUniformLocation(program, "uTheta");
+    document.getElementById("ButtonX").onclick = function(){axis = xAxis;};
+    document.getElementById("ButtonY").onclick = function(){axis = yAxis;};
+    document.getElementById("ButtonZ").onclick = function(){axis = zAxis;};
+    document.getElementById("ButtonT").onclick = function(){flag = !flag;};
+
     configureTexture(image2);
 
     gl.uniform1i( gl.getUniformLocation(program, "uTextureMap"), 0);
+
+    if(flag) theta[axis] += 2.0;
+    gl.uniform3fv(thetaLoc, theta);
 
     render();
 };
 
 function render() {
+    gl.enable(gl.DEPTH_TEST);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
     gl.drawArrays( gl.TRIANGLES, 0, positionsArray.length );
