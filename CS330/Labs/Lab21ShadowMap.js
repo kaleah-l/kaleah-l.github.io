@@ -1,6 +1,6 @@
 // shadow map example
 
-// two objects: a rotatable cube and triangle
+// two objects: a rotatable plane and triangle
 // point light source behind triangle
 
 "use strict";
@@ -10,7 +10,7 @@ var gl;
 
 window.onload = init;
 
-var numCubeVertices  = 36;
+var numPlaneVertices  = 6;
 var numTriangleVertices = 3;
 
 var triangleInstanceMatrix, cubeInstanceMatrix;
@@ -21,7 +21,7 @@ var lightViewMatrix;
 
 var vPosition;
 
-// initial cube rotation axis and angle
+// initial plane rotation axis and angle
 
 var xAxis = 0;
 var yAxis = 1;
@@ -29,7 +29,7 @@ var zAxis = 2;
 var axis = 0;
 var theta =[0, 45, 0];
 
-// cube rotation flag
+// plane rotation flag
 
 var flag = false;
 
@@ -47,12 +47,8 @@ var colorsArray = [];
 
 var cubeVertices = [
     vec4(-0.5, -0.5, 0.5, 1.2),
-    vec4(-0.5, 0.5, 0.5, 1.2),
-    vec4(0.5, 0.5, 0.5, 1.2),
     vec4(0.5, -0.5, 0.5, 1.2),
     vec4(-0.5, -0.5, -0.5, 1.2),
-    vec4(-0.5, 0.5, -0.5, 1.2),
-    vec4(0.5, 0.5, -0.5, 1.2),
     vec4(0.5, -0.5, -0.5, 1.2)
 ];
 
@@ -92,14 +88,9 @@ function quad(a, b, c, d) {
      colorsArray.push(cubeColors[a]);
 }
 
-function colorCube()
+function colorPlane()
 {
-    quad(0, 1, 5, 4);
-    quad(1, 0, 3, 2);
-    quad(2, 3, 7, 6);
-    quad(3, 0, 4, 7);
-    quad(4, 5, 6, 7);
-    quad(5, 1, 2, 6);
+    quad(1,0,2,3);
 }
 
 function triangle(a, b, c) {
@@ -143,9 +134,9 @@ function init() {
     document.getElementById("ButtonZ").onclick = function(){axis = zAxis;};
     document.getElementById("ButtonT").onclick = function(){flag = !flag;};
 
-// generate cube and triangle data
+// generate plane and triangle data
 
-    colorCube();
+    colorPlane();
     triangle(0, 1, 2);
 
 //  Load shaders and initialize attribute buffers
@@ -234,7 +225,7 @@ function render() {
 
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-// update cube rotation matrix (its instance transformation) then render ccube
+// update plane rotation matrix (its instance transformation) then render plane
 
 
     if(flag) theta[axis] += 0.5;
@@ -246,7 +237,7 @@ function render() {
     gl.uniformMatrix4fv( gl.getUniformLocation(program1,
             "uInstanceMatrix"), false, flatten(cubeInstanceMatrix) );
 
-    gl.drawArrays(gl.TRIANGLES, 0, numCubeVertices);
+    gl.drawArrays(gl.TRIANGLES, 0, numPlaneVertices);
 
 // don't rotate traingle and render it
 
@@ -255,7 +246,7 @@ function render() {
     gl.uniformMatrix4fv(gl.getUniformLocation(program1,
             "uInstanceMatrix"), false, flatten(triangleInstanceMatrix));
 
-    gl.drawArrays(gl.TRIANGLES, numCubeVertices, numTriangleVertices);
+    gl.drawArrays(gl.TRIANGLES, numPlaneVertices, numTriangleVertices);
 
 // release buffers
 
@@ -279,7 +270,7 @@ function render() {
     gl.uniformMatrix4fv(gl.getUniformLocation(program2,
             "uLightProjectionMatrix"), false, flatten(lightProjectionMatrix));
 
-     gl.uniformMatrix4fv(gl.getUniformLocation(program2,
+    gl.uniformMatrix4fv(gl.getUniformLocation(program2,
             "uLightViewMatrix"), false, flatten(lightViewMatrix));
 
 // modelView and projection matrices for camera viewpor
@@ -291,9 +282,9 @@ function render() {
 
     cameraViewMatrix = mat4();
 
-     var cameraLoc = vec3(0, 1, 1);
-     var cameraAt = vec3(0, 0, 0);
-     var cameraUp = vec3(0, 1, 0);
+    var cameraLoc = vec3(0, 1, 1);
+    var cameraAt = vec3(0, 0, 0);
+    var cameraUp = vec3(0, 1, 0);
 
     cameraViewMatrix = lookAt(cameraLoc, cameraAt, cameraUp);
 
@@ -302,13 +293,13 @@ function render() {
 
     gl.uniformMatrix4fv(gl.getUniformLocation(program2,
             "uInstanceMatrix"), false, flatten(cubeInstanceMatrix));
-    gl.drawArrays( gl.TRIANGLES, 0, numCubeVertices);
+    gl.drawArrays( gl.TRIANGLES, 0, numPlaneVertices);
 
 
     gl.uniformMatrix4fv(gl.getUniformLocation(program2,
             "uInstanceMatrix"), false, flatten(triangleInstanceMatrix));
-    gl.drawArrays(gl.TRIANGLES, numCubeVertices, numTriangleVertices);
+    gl.drawArrays(gl.TRIANGLES, numPlaneVertices, numTriangleVertices);
 
-    requestAnimationFrame(render)
+    setInterval( requestAnimationFrame(render) , 500) ;
 
 }
